@@ -1,3 +1,4 @@
+import 'package:disenos/src/pages/launcher_tablet_page.dart';
 import 'package:disenos/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -28,10 +29,13 @@ class MyApp extends StatelessWidget {
       title: 'Diseños App',
       home: OrientationBuilder(
         builder: (BuildContext context, Orientation orientation){
-          print('Orientation $orientation');
-          return Container(
-            child: LauncherPage(),
-          );
+          // print('Orientation $orientation');
+          final screenSize = MediaQuery.of(context).size;
+          if(screenSize.width > 500){
+            return LauncherTabletPage();
+          }else{
+            return LauncherPage();
+          }
         })
     );
   }
