@@ -6,13 +6,18 @@ import 'package:disenos/src/theme/theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:disenos/src/routes/routes.dart';
 
+import '../theme/theme.dart';
+
 class LauncherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text('Diseños en Flutter'),
+        backgroundColor: appTheme.accentColor,
       ),
       drawer: _MenuPrincipal(),
       body: _ListaOpciones()

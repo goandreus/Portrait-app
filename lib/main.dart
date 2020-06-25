@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:disenos/src/pages/launcher_page.dart';
 import 'package:provider/provider.dart';
 
+import 'src/pages/launcher_page.dart';
+
 
 
 void main() => runApp(
@@ -24,7 +26,13 @@ class MyApp extends StatelessWidget {
       theme: currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: LauncherPage()
+      home: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation){
+          print('Orientation $orientation');
+          return Container(
+            child: LauncherPage(),
+          );
+        })
     );
   }
 }
