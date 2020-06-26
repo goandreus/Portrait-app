@@ -1,4 +1,5 @@
 import 'package:disenos/src/labs/slideshow_page.dart';
+import 'package:disenos/src/models/layout_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class LauncherTabletPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final appTheme = Provider.of<ThemeChanger>(context);
+    final layoutModel = Provider.of<LayoutModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Diseños en Flutter - Tablet'),
@@ -35,7 +38,7 @@ class LauncherTabletPage extends StatelessWidget {
             color: (appTheme.darkTheme)? Colors.grey : appTheme.currentTheme.accentColor,
           ),
           Expanded(
-            child: SlideShowPage(),
+            child: layoutModel.currentPage,
           )
         ]
       ),
@@ -63,7 +66,9 @@ class _ListaOpciones extends StatelessWidget {
         title: Text( pageRoutes[i].titulo ),
         trailing: Icon( Icons.chevron_right, color: appTheme.accentColor ),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> pageRoutes[i].page ));
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=> pageRoutes[i].page ));
+          final layoutModel = Provider.of<LayoutModel>(context, listen: false);
+          layoutModel.currentPage = pageRoutes[i].page;
         },
 
       ), 
